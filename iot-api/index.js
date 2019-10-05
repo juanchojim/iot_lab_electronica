@@ -1,20 +1,19 @@
 const express = require('express');
+const routes = require('./routes/api');
+const bodyParser = require('body-parser');
+
+//configurar aplicación express
 const app = express();
-//const morgan = require('morgan');
 
-//configuraciones
-app.set('port', 3000)
 
-//middlewares
-//app.use(morgan('dev'));
-app.use(express.json());
+app.use(bodyParser.json());
 
-//routes
-app.get('/', (req, res) => {
-    console.log("hello world");
-});
 
-//Empezando el server
-app.listen(app.get('port'), () => {
-    console.log("Servidor iniciado");
+
+//inicializar rutas
+app.use('/api/', routes);
+
+
+app.listen(3000, function () {
+    console.log('Escuchando en el puerto 3000');
 });
