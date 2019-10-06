@@ -9,19 +9,23 @@ const cors = require('cors');
 const app = express();
 
 //Settings
-app.set('port', 3000);
+app.use(cors({ origin: true, credentials: true }));
+app.set('port', 3022);
 app.set('json spaces', 2);
 
 
 
 //connectar con mongodb
 
+let url = 'mongodb://juan:vivoenpomona@cluster0-shard-00-00-2tcmk.mongodb.net:27017,cluster0-shard-00-01-2tcmk.mongodb.net:27017,cluster0-shard-00-02-2tcmk.mongodb.net:27017/admin?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+
 const options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    dbName: 'Laboratorio'
 }
 
-mongoose.connect('mongodb://localhost/ninjago', options).then(function () {
+mongoose.connect(url, options).then(function () {
     console.log("conectado satisfactoriamente");
 });
 

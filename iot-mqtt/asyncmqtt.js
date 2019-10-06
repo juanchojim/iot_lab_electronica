@@ -9,6 +9,7 @@ var options = {
     username: 'ippytged',
     password: 'GtFKYEPPiBgW',
     clean: true,
+    useUnifiedTopology: true
 };
 
 async function run() {
@@ -16,9 +17,7 @@ async function run() {
     console.log("Empezando");
     try {
         await client.subscribe("placa1/temperatura");
-
         await client.on("message", callForBD);
-
     } catch (e) {
         console.log(e.stack);
         process.exit();
@@ -27,6 +26,15 @@ async function run() {
 
 //callback que envía los datos a mongoDB
 const callForBD = function (topic, message) {
+
+    //Pruebas mias : Sirve para procesar lo que llega de la esp como un documento JSON.
+    console.log('Mensaje recibido: ' + message);
+    message += ""; //Para pasarlo a string
+    messageJson = JSON.parse(message);
+    console.log(messageJson);
+    console.log(messageJson.id);
+
+
 
     //Variables recibidas.
     const msg = (message + "").trim();

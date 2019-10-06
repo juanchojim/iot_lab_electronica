@@ -4,7 +4,7 @@ async function get(url) {
     return json;
 }
 
-get('http://localhost:3000/api/placas')
+get('http://localhost:3022/api/placas')
     .then(res => console.log(res))
     .catch(err => console.log(err));
 
