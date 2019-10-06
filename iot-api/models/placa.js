@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+
 //crear el esquema de la placa y su modelo (coleccion)
 const PlacaSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     name: String,
     measurement: {
         humidity: Number,
@@ -13,6 +13,11 @@ const PlacaSchema = new Schema({
             type: Date,
             default: Date(),
         },
-    }
+    },
 
-}); 
+    //add GeoLocation
+});
+
+const Placa = mongoose.model('placas', PlacaSchema);
+
+module.exports = Placa; 
